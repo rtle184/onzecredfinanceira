@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Onzecred - Crédito Rápido e Descomplicado</title>
+  <meta name="description" content="Empréstimos rápidos, consignado, FGTS, refinanciamento, conta de luz e mais. Taxas justas e aprovação rápida.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary: #1e40af;
+      --primary-dark: #1e3a8a;
+      --accent: #f97316;
+      --accent-light: #fb923c;
+      --light: #f8fafc;
+      --dark: #0f172a;
+      --gray: #64748b;
+      --border: #e2e8f0;
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--light);
+      color: #1e293b;
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(90deg, var(--primary) 0%, #2563eb 100%);
+      color: white;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+    }
+
+    nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo-img {
+      height: 64px;
+      width: 64px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: white;
+      padding: 4px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+    }
+
+    .brand-text {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.8px;
+      line-height: 1;
+    }
+
+    .brand-text span {
+      color: var(--accent-light);
+    }
+
+    .menu-desktop {
+      display: flex;
+      gap: 2.2rem;
+      font-weight: 500;
+      font-size: 1.05rem;
+    }
+
+    .menu-desktop a {
+      color: white;
+      text-decoration: none;
+      transition: color 0.25s;
+    }
+
+    .menu-desktop a:hover { color: var(--accent); }
+
+    .menu-toggle {
+      display: none;
+      font-size: 1.9rem;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
+
+    .menu-mobile {
+      display: none;
+      position: fixed;
+      top: 80px;
+      left: 0;
+      width: 100%;
+      background: var(--primary);
+      flex-direction: column;
+      padding: 1.5rem;
+      z-index: 999;
+    }
+
+    .menu-mobile.active { display: flex; }
+
+    .menu-mobile a {
+      color: white;
+      padding: 1.1rem;
+      font-size: 1.15rem;
+      text-align: center;
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .hero {
+      background: linear-gradient(rgba(30,64,175,0.88), rgba(30,64,175,0.88)),
+                  url('https://github.com/rtle184/onzecred/blob/main/Gemini_Generated_Image_wkjf9vwkjf9vwkjf.png?raw=true') center/cover no-repeat;
+      color: white;
+      text-align: center;
+      padding: 9rem 1.5rem 7rem;
+      margin-top: 80px;
+    }
+
+    .hero h1 { font-size: clamp(2.2rem, 6vw, 3.5rem); margin-bottom: 1rem; }
+    .hero p { font-size: clamp(1.1rem, 3vw, 1.3rem); max-width: 720px; margin: 0 auto 2.5rem; }
+
+    .form-container {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.12);
+      padding: 2.5rem 1.8rem;
+      max-width: 620px;
+      margin: -4.5rem auto 5rem;
+    }
+
+    .form-container h2 {
+      color: var(--primary);
+      text-align: center;
+      margin-bottom: 1.8rem;
+      font-size: 1.9rem;
+    }
+
+    .toggle-tipo {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .toggle-tipo button {
+      padding: 0.8rem 1.6rem;
+      border: 2px solid var(--border);
+      background: white;
+      border-radius: 999px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+
+    .toggle-tipo button.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    .campo { margin-bottom: 1.5rem; }
+
+    label { display: block; margin-bottom: 0.5rem; font-weight: 500; color: #334155; }
+
+    input, select {
+      width: 100%;
+      padding: 0.9rem 1.1rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    button[type="submit"] {
+      width: 100%;
+      padding: 1.15rem;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    button[type="submit"]:hover { background: var(--primary-dark); }
+
+    section { padding: 5rem 1.5rem; max-width: 1200px; margin: 0 auto; }
+
+    h2 { font-size: clamp(1.8rem, 4vw, 2.4rem); color: var(--primary); text-align: center; margin-bottom: 2.5rem; }
+
+    .about-logo {
+      display: block;
+      width: 200px;
+      height: 200px;
+      margin: 2.5rem auto 1rem;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+      border: 6px solid white;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.8rem;
+      margin-top: 2rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 1.8rem;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+      transition: transform 0.25s;
+      text-align: center;
+    }
+
+    .card:hover { transform: translateY(-6px); }
+
+    .card h3 { color: var(--primary); margin-bottom: 0.9rem; font-size: 1.35rem; }
+
+    footer {
+      background: var(--dark);
+      color: #cbd5e1;
+      text-align: center;
+      padding: 3rem 1.5rem 2rem;
+    }
+
+    @media (max-width: 900px) {
+      .menu-desktop { display: none; }
+      .menu-toggle { display: block; }
+      .brand-text { font-size: 1.65rem; }
+      .logo-img { height: 56px; width: 56px; }
+      .hero { padding: 7rem 1.5rem 5rem; margin-top: 80px; }
+      .form-container { margin: -3rem 1.5rem 4rem; padding: 2rem 1.5rem; }
+    }
+
+    @media (max-width: 480px) {
+      .brand { gap: 10px; }
+      .logo-img { height: 48px; width: 48px; }
+      .brand-text { font-size: 1.45rem; }
+      .about-logo { width: 160px; height: 160px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="brand">
+      <img 
+        src="https://github.com/rtle184/onzecred/blob/main/Gemini_Generated_Image_3hd8q3hd8q3hd8q3.png?raw=true" 
+        alt="Onzecred Logo" 
+        class="logo-img"
+        loading="lazy"
+      >
+      <div class="brand-text">Onze<span>cred</span></div>
+    </div>
+
+    <div class="menu-desktop">
+      <a href="#home">Home</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#porque">Por Que Nós</a>
+      <a href="#faq">Perguntas</a>
+      <a href="#contato">Contato</a>
+    </div>
+
+    <button class="menu-toggle" aria-label="Abrir menu">☰</button>
+  </nav>
+
+  <div class="menu-mobile" id="mobileMenu">
+    <a href="#home">Home</a>
+    <a href="#sobre">Sobre</a>
+    <a href="#servicos">Serviços</a>
+    <a href="#porque">Por Que Nós</a>
+    <a href="#faq">Perguntas</a>
+    <a href="#contato">Contato</a>
+  </div>
+</header>
+
+<section id="home" class="hero">
+  <h1>Crédito Rápido, Justo e 100% Digital</h1>
+  <p>Encontre a melhor solução financeira para você ou sua empresa. Taxas a partir de 1,09% a.m. e aprovação em poucas horas.</p>
+</section>
+
+<div class="form-container" id="contato">
+  <h2>Consulte seu Crédito Agora <span style="color:var(--accent);">(Grátis!)</span></h2>
+  
+  <div class="toggle-tipo">
+    <button class="active" data-tipo="pf">Pessoa Física (CPF)</button>
+    <button data-tipo="pj">Pessoa Jurídica (CNPJ)</button>
+  </div>
+  
+  <form id="consulta-form">
+    <div class="campo">
+      <label id="label-documento">CPF</label>
+      <input type="text" id="documento" placeholder="000.000.000-00" maxlength="18" required>
+    </div>
+    <div class="campo">
+      <label>Nome completo / Razão Social</label>
+      <input type="text" id="nome" placeholder="Seu nome aqui" required>
+    </div>
+    <div class="campo">
+      <label>WhatsApp (melhor contato)</label>
+      <input type="tel" id="whatsapp" placeholder="(00) 00000-0000" maxlength="15" required>
+    </div>
+    <div class="campo">
+      <label>Valor Desejado</label>
+      <select id="valor" required>
+        <option value="">Selecione uma faixa</option>
+        <option value="até 5.000">Até R$ 5.000</option>
+        <option value="5.001 a 15.000">R$ 5.001 a R$ 15.000</option>
+        <option value="15.001 a 50.000">R$ 15.001 a R$ 50.000</option>
+        <option value="acima 50.000">Acima de R$ 50.000</option>
+      </select>
+    </div>
+    <button type="submit">Quero Consultar →</button>
+  </form>
+</div>
+
+<section id="sobre">
+  <h2>Sobre a Onzecred</h2>
+  <p style="max-width:760px; margin:0 auto 2rem; text-align:center; font-size:1.1rem;">
+    Somos uma empresa especializada em soluções de crédito acessíveis e transparentes. Com experiência consolidada no mercado brasileiro, ajudamos pessoas físicas e jurídicas a realizarem projetos, quitarem dívidas caras e investirem no futuro com condições justas e processos digitais rápidos.
+  </p>
+  
+  <img 
+    src="https://github.com/rtle184/onzecred/blob/main/Gemini_Generated_Image_3hd8q3hd8q3hd8q3.png?raw=true" 
+    alt="Logo Onzecred" 
+    class="about-logo"
+    loading="lazy"
+  >
+</section>
+
+<section id="servicos">
+  <h2>Nossos Serviços de Crédito e Empréstimo</h2>
+  <div class="cards-grid">
+    <div class="card">
+      <h3>Antecipação FGTS</h3>
+      <p>Antecipe parcelas do Saque-Aniversário FGTS. Dinheiro rápido na conta sem comprometer o salário mensal.</p>
+    </div>
+    <div class="card">
+      <h3>Crédito Pessoal / Auxílio Governo</h3>
+      <p>Opções para negativados ou beneficiários de auxílios governamentais. Ideal para emergências e projetos pessoais.</p>
+    </div>
+    <div class="card">
+      <h3>Empréstimo na Conta de Luz</h3>
+      <p>Parcelas descontadas diretamente na fatura de energia. Prático e sem boleto extra.</p>
+    </div>
+    <div class="card">
+      <h3>Refinanciar Veículo</h3>
+      <p>Crédito com garantia de carro ou moto. Taxas baixas e continue dirigindo normalmente.</p>
+    </div>
+    <div class="card">
+      <h3>Consignado INSS</h3>
+      <p>Para aposentados e pensionistas. Desconto direto no benefício + taxas reduzidas.</p>
+    </div>
+    <div class="card">
+      <h3>Empréstimo para Entes Públicos</h3>
+      <p>Linhas especiais para prefeituras, municípios, estados e federais. Financiamento de obras e projetos.</p>
+    </div>
+    <div class="card">
+      <h3>Consignado Privado / Público</h3>
+      <p>Desconto em folha para servidores e CLT de empresas conveniadas. Juros mais baixos do mercado.</p>
+    </div>
+    <div class="card">
+      <h3>Cartão com Limite 5% da Renda</h3>
+      <p>Cartão de crédito com limite acessível baseado na renda comprovada. Controle financeiro diário.</p>
+    </div>
+  </div>
+</section>
+
+<section id="porque">
+  <h2>Por Que Escolher a Onzecred?</h2>
+  <div class="cards-grid">
+    <div class="card"><h3>Taxas a partir de 1,09% a.m.</h3><p>Condições competitivas para bons perfis.</p></div>
+    <div class="card"><h3>100% Online e Seguro</h3><p>Sem filas, sem cartórios. Tudo digital.</p></div>
+    <div class="card"><h3>Resposta em poucas horas</h3><p>Análise rápida + contato por WhatsApp.</p></div>
+    <div class="card"><h3>Atendimento Personalizado</h3><p>Equipe dedicada para encontrar a melhor solução.</p></div>
+    <div class="card"><h3>Transparência Total</h3><p>Sem pegadinhas. Sem cobrança antecipada.</p></div>
+  </div>
+</section>
+
+<section id="faq">
+  <h2>Perguntas que Podem Mudar Sua Vida Financeira</h2>
+  <div style="max-width:900px; margin:0 auto;">
+    <p><strong>Precisa reformar a casa, pagar faculdade ou quitar dívidas caras?</strong><br>Consignado ou FGTS resolvem com parcelas que cabem no bolso.</p><br>
+    <p><strong>Está com nome sujo ou sem margem consignável?</strong><br>Temos opções como antecipação FGTS e empréstimo na conta de luz sem consulta pesada.</p><br>
+    <p><strong>Quer trocar dívidas caras (cartão rotativo, cheque especial) por algo mais barato?</strong><br>Refinanciamento ou consignado reduz os juros drasticamente.</p><br>
+    <p><strong>É aposentado, servidor ou tem veículo quitado?</strong><br>Consignado INSS/servidor ou garantia de veículo oferecem as melhores taxas.</p>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Onzecred Soluções Financeiras LTDA | CNPJ: XX.XXX.XXX/0001-XX<br>
+  contato@onzecred.com.br | Todos os direitos reservados.<br><br>
+  Consulta sem compromisso • Sujeita a análise de crédito • Crédito responsável</p>
+</footer>
+
+<script>
+// Menu hamburger
+document.querySelector('.menu-toggle').addEventListener('click', () => {
+  document.getElementById('mobileMenu').classList.toggle('active');
+});
+
+document.querySelectorAll('.menu-mobile a').forEach(link => {
+  link.addEventListener('click', () => {
+    document.getElementById('mobileMenu').classList.remove('active');
+  });
+});
+
+// Toggle CPF/CNPJ
+document.querySelectorAll('.toggle-tipo button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.toggle-tipo button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    
+    const isPF = btn.dataset.tipo === 'pf';
+    document.getElementById('label-documento').textContent = isPF ? 'CPF' : 'CNPJ';
+    document.getElementById('documento').placeholder = isPF ? '000.000.000-00' : '00.000.000/0000-00';
+    document.getElementById('documento').value = '';
+  });
+});
+
+// Máscara documento
+document.getElementById('documento').addEventListener('input', e => {
+  let v = e.target.value.replace(/\D/g,'');
+  const label = document.getElementById('label-documento').textContent;
+  if (label === 'CPF') {
+    v = v.replace(/(\d{3})(\d)/,"$1.$2").replace(/(\d{3})(\d)/,"$1.$2").replace(/(\d{3})(\d{1,2})$/,"$1-$2");
+  } else {
+    v = v.replace(/^(\d{2})(\d)/,"$1.$2").replace(/^(\d{2})\.(\d{3})(\d)/,"$1.$2.$3").replace(/\.(\d{3})(\d)/,".$1/$2").replace(/(\d{4})(\d)/,"$1-$2");
+  }
+  e.target.value = v;
+});
+
+// Máscara WhatsApp
+document.getElementById('whatsapp').addEventListener('input', e => {
+  let v = e.target.value.replace(/\D/g,'').slice(0,11);
+  v = v.replace(/^(\d{2})(\d)/g,"($1) $2").replace(/(\d{5})(\d)/,"$1-$2");
+  e.target.value = v;
+});
+
+// Form submit
+document.getElementById('consulta-form').addEventListener('submit', e => {
+  e.preventDefault();
+  alert('Obrigado pela consulta! Entraremos em contato em breve via WhatsApp.');
+  e.target.reset();
+});
+</script>
+</body>
+</html>
